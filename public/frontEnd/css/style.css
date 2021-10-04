@@ -508,6 +508,7 @@ form.main-search-box button {
     border-radius: 5px;
     margin: 0 6px;
     width: 10.11%;
+    transition: all 0.3s ease-in-out;
 }
 .single-category ul {
     padding: 8px 10px;
