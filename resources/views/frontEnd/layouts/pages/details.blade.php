@@ -7,52 +7,90 @@
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="advertisment-details">
 				    <div class="row">
-				    	<div class="col-sm-12">
-							<div class="advertisment-details-header">
-								<h5>{{$adsdetails->title}}</h5>
-								<p>For sale by <a href="#">{{$adsdetails->customerName}}</a>
-									@php
-					  					$thana = App\Thana::find($adsdetails->thana_id);
-					  					$union = App\Union::find($adsdetails->union_id);
-					  				@endphp
-					  				{{$adsdetails->division_name}} <i class="fa fa-angle-right"></i> {{$adsdetails->dist_name}} @if($adsdetails !=NULL) <i class="fa fa-angle-right"></i> {{$thana->thana_name}} 
-					  				@endif
-					  				@if($union !=NULL) <i class="fa fa-angle-right"></i> {{$union->union_name}} 
-					  				@endif</p>
-							</div>
-				    	</div>
-					    <div class="col-sm-7">
-							<!-- details head end-->
-							<div class="advertisment-details-body">
-								<div class="dslider owl-carousel">
-									@foreach($adsimage as $image)
-		                               @if($adsdetails->id==$image->ads_id)
-		                               <div class="dslider-item">
-										<img src="{{asset($image->image)}}" alt="">
-										</div>
-										<!-- dslider end -->
-		                                @endif
-		                            @endforeach
-									
+						  <div class="col-sm-8">
+						  	<div class="advertisment-left">						  		
+						    	<div class="advertisment-details-header">
+						    		<div class="adsdetails-head-flex">						    			
+												<div>											
+													<h5>{{$adsdetails->title}}</h5>
+													<p>For sale by <a href="#">{{$adsdetails->customerName}}</a>
+														@php
+										  					$thana = App\Thana::find($adsdetails->thana_id);
+										  					$union = App\Union::find($adsdetails->union_id);
+										  				@endphp
+										  				{{$adsdetails->division_name}} <i class="fa fa-angle-right"></i> {{$adsdetails->dist_name}} @if($adsdetails !=NULL) <i class="fa fa-angle-right"></i> {{$thana->thana_name}} 
+										  				@endif
+										  				@if($union !=NULL) <i class="fa fa-angle-right"></i> {{$union->union_name}} 
+										  				@endif</p>
+												</div>
+												<div class="adsdetails-price-right">
+													<h1>Tk {{$adsdetails->price}}</h1>
+													<p>Fixed</p>
+												</div>
+						    		</div>
+				  					<div class="share-btn desktop">
+									    <p><i class="fa fa-share-alt"></i> শেয়ার করুন </p>
+                      <div class="addthis_inline_share_toolbox_wrjo"></div>
+                    </div>
+									</div>
+								<!-- details head end-->
+								<div class="advertisment-details-body">
+									<div class="dslider owl-carousel">
+										@foreach($adsimage as $image)
+	                   	@if($adsdetails->id==$image->ads_id)
+	                   	<div class="dslider-item">
+												<img src="{{asset($image->image)}}" alt="">
+											</div>
+											<!-- dslider end -->
+	                    @endif
+	                  @endforeach
+										
+									</div>
 								</div>
-							</div>
-							<div class="report-btn">
-							    <button data-toggle="modal" data-target="#exampleModal">Report this ad</button>
-							</div>
+								<div class="report-btn">
+								    <button data-toggle="modal" data-target="#exampleModal">Report this ad</button>
+								</div>
+						  </div>
 						</div>
-						<div class="col-sm-5">
-							<div class="row">
-								<div class="col-sm-12">
-									<ul class="customer-phone">
-										<li class="fmobile-hide"><i class="fa fa-phone"></i><a href="tel:{{$adsdetails->phone}}">{{$adsdetails->phone}} <span>বিজ্ঞাপন দাতার ফোন নাম্বার </span></a>
-										</li>
-										<li class="fmobile-hide"><i class="fa fa-comments"></i> <a href="">চ্যাট করুন </a>
-										</li>
-										<li><i class="fa fa-clock-o"></i> <a href="">বিজ্ঞাপনের তারিখ  <span>{{$adsdetails->created_at}}</span></a>
-										</li>
-										<li><i class="fa fa-user"></i> <a href="">@if($adsdetails->membership==1) <i class="fa fa-circle text-success"></i> @endif {{$adsdetails->customerName}} @if($adsdetails->membership==1)<img src="{{asset('public/frontEnd')}}/images/shield.png" alt="" width="20"/>@endif <span>এই মেম্বারের পেইজ ভিজিট করুন</span></a>
-										</li>
-									</ul>
+						<div class="col-sm-4">
+							<div class="advertisment-right">								
+								<div class="row">
+									<div class="col-sm-12">
+										<!-- user avatar -->
+										<div class="user-avatar">
+											<div class="avatar-pic-container">
+												<img src="{{asset('public/frontEnd/images/customer.png')}}" class="avatar-pic" alt="">
+											</div>
+											<p class="avatar-for-sale">For sale by</p>
+											<h3 class="avatar-name">{{$adsdetails->customerName}}</h3>
+											<div class="avatar-contact">
+												<div class="avatar-contact-phone">
+													<div class="avatar-contact-left">													
+														<div class="avatar-contact-icon"><i class="fa fa-phone"></i></div>
+													</div>
+													<div class="avatar-contact-right">
+														<div class="avatar-contact-text">
+															<p class="text-center">Click to show</p>
+															<h4 class="pl-3">{{$adsdetails->phone}}</h4>
+														</div>														
+													</div>
+												</div>
+												<div>													
+													<a href="" class="avatar-contact-btn">View all ads</a>
+												</div>
+											</div>
+										</div>
+										<ul class="customer-phone-details">
+											<li class="fmobile-hide"><i class="fa fa-phone"></i><a href="tel:{{$adsdetails->phone}}">{{$adsdetails->phone}} <span>বিজ্ঞাপন দাতার ফোন নাম্বার </span></a>
+											</li>
+											<li class="fmobile-hide"><i class="fa fa-comments"></i> <a href="">চ্যাট করুন </a>
+											</li>
+											<li><i class="fa fa-clock-o"></i> <a href="">বিজ্ঞাপনের তারিখ  <span>{{$adsdetails->created_at}}</span></a>
+											</li>
+											<li><i class="fa fa-user"></i> <a href="">@if($adsdetails->membership==1) <i class="fa fa-circle text-success"></i> @endif {{$adsdetails->customerName}} @if($adsdetails->membership==1)<img src="{{asset('public/frontEnd')}}/images/shield.png" alt="" width="20"/>@endif <span>এই মেম্বারের পেইজ ভিজিট করুন</span></a>
+											</li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -63,10 +101,7 @@
 							<div class="content">
 								<div class="row">
 									<div class="col-sm-4">
-									    <div class="share-btn desktop">
-										    <p><i class="fa fa-share-alt"></i> শেয়ার করুন </p>
-                                            <div class="addthis_inline_share_toolbox_wrjo"></div>
-                        				</div>
+									    
 										<div class="product-basic">
 											 <ul>
 											  	<li>Consition : </li>
